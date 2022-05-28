@@ -2,7 +2,7 @@
 package com.example.e_shop.pojo;
 
 
-public class Data {
+public class DataRegister {
 
     private String name;
 

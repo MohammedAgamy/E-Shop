@@ -8,13 +8,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserSignUpLiveData extends ViewModel {
+
     public  MutableLiveData<RegisterModel> mutableLiveDataSignUp = new MutableLiveData<>();
 
 
     public MutableLiveData<RegisterModel> setUserData() {
         return mutableLiveDataSignUp;
     }
-
 
     public void setUserDataToApi( String name ,String email ,String phone ,String password)
     {

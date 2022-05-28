@@ -2,12 +2,13 @@
 package com.example.e_shop.pojo;
 
 
-public class RegisterModel {
+public class LogInModel {
 
 
     private Boolean status;
 
     private String message;
+
     private DataRegister data;
 
     public Boolean getStatus() {
