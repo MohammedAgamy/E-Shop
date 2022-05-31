@@ -13,7 +13,7 @@ public class SharedModel {
 
     SharedPreferences mShared;
     SharedPreferences.Editor mEditor;
-    Context mContext;
+    Context mContext ;
 
     public static final String File_Name = "E-Shop";
     public static final String Key_Name = "UserName";
