@@ -2,65 +2,106 @@ package com.example.e_shop.ui.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.e_shop.Adapter.SliderHomeAdapter;
 import com.example.e_shop.R;
+import com.example.e_shop.databinding.FragmentHomeBinding;
+import com.example.e_shop.pojo.ApiService;
+import com.example.e_shop.pojo.Client;
+import com.example.e_shop.pojo.HomePackage.Datum;
+import com.example.e_shop.pojo.HomePackage.ResultBannersHome;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentHomeBinding mHomeBinding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //Adapter
+    SliderHomeAdapter mSliderHomeAdapter;
+    List<Datum> mSlideImage;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        mHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        View view = mHomeBinding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        iniView(view);
+    }
+
+    private void iniView(View view) {
+
+        showSlider();
+    }
+
+    public void showSlider() {
+        ApiService apiService = Client.getRetrofit().create(ApiService.class);
+        Call<ResultBannersHome> call = apiService.getBanners();
+
+        call.enqueue(new Callback<ResultBannersHome>() {
+            @Override
+            public void onResponse(Call<ResultBannersHome> call, Response<ResultBannersHome> response) {
+                Log.e("showMassage", response.body().getData().get(0).getImage());
+                mSlideImage = response.body().getData();
+                mSliderHomeAdapter = new SliderHomeAdapter(mSlideImage, getActivity());
+                mHomeBinding.imageSlider.setSliderAdapter(mSliderHomeAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ResultBannersHome> call, Throwable t) {
+                Log.e("error showMassage", t.getMessage());
+
+            }
+        });
+
+        mSlideImage = new ArrayList<>();
+        mSliderHomeAdapter = new SliderHomeAdapter(mSlideImage, getActivity());
+        mHomeBinding.imageSlider.setSliderAdapter(mSliderHomeAdapter);
+        mHomeBinding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        mHomeBinding.imageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        mHomeBinding.imageSlider.startAutoCycle();
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        showSlider();
     }
 }
+

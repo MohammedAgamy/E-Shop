@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/activity_home.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/activity_main.xml" value="0.1671875" />
+        <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/fragment_get_start.xml" value="0.13272543059777103" />
+        <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/fragment_home.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
         <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/PanDa/AndroidStudioProjects/E_Shop/app/src/main/res/layout/item_slider.xml" value="0.1671875" />
       </map>
     </option>
   </component>

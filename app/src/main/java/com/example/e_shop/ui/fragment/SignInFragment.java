@@ -91,6 +91,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener {
                 public void onChanged(LogInModel logInModel) {
 
                     Log.d("messageFrom Api = ", logInModel.getMessage());
+                    SharedModel model =new SharedModel(getActivity());
+                    model.SaveData(null , email,null,true);
                     getActivity().startActivity(new Intent(getActivity(), HomeActivity.class));
                     getActivity().finish();
 
