@@ -8,8 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.e_shop.R;
-import com.example.e_shop.pojo.HomePackage.Datum;
-import com.example.e_shop.pojo.HomePackage.ResultBannersHome;
+import com.example.e_shop.pojo.HomePackage.Banners.Datum;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;

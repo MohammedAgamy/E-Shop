@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.e_shop.R;
-import com.example.e_shop.pojo.SharedModel;
+import com.example.e_shop.pojo.RegisterPackage.SharedModel;
 import com.example.e_shop.ui.HomeActivity;
 
 public class SplashFragment extends Fragment {

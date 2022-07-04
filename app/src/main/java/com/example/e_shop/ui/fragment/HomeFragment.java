@@ -6,19 +6,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.example.e_shop.Adapter.CategoryAdapter;
 import com.example.e_shop.Adapter.SliderHomeAdapter;
 import com.example.e_shop.R;
 import com.example.e_shop.databinding.FragmentHomeBinding;
 import com.example.e_shop.pojo.ApiService;
 import com.example.e_shop.pojo.Client;
-import com.example.e_shop.pojo.HomePackage.Datum;
-import com.example.e_shop.pojo.HomePackage.ResultBannersHome;
+import com.example.e_shop.pojo.HomePackage.Banners.Datum;
+import com.example.e_shop.pojo.HomePackage.Banners.ResultBannersHome;
+import com.example.e_shop.pojo.HomePackage.Categories.CategoryViewModel;
+import com.example.e_shop.pojo.HomePackage.Categories.Data;
+import com.example.e_shop.pojo.HomePackage.Categories.DatumCategory;
+import com.example.e_shop.pojo.HomePackage.Categories.ResultCategories;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 
@@ -36,6 +47,11 @@ public class HomeFragment extends Fragment {
     //Adapter
     SliderHomeAdapter mSliderHomeAdapter;
     List<Datum> mSlideImage;
+
+    //
+    CategoryViewModel mCategoryViewModel;
+    CategoryAdapter mCatAdapter;
+    List<Data> mLisCat;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,6 +83,37 @@ public class HomeFragment extends Fragment {
     private void iniView(View view) {
 
         showSlider();
+        showCategories();
+
+    }
+
+    private void showCategories() {
+        ApiService apiService = Client.getRetrofit().create(ApiService.class);
+        Call<ResultCategories> call = apiService.getCategory();
+
+        call.enqueue(new Callback<ResultCategories>() {
+            @Override
+            public void onResponse(Call<ResultCategories> call, Response<ResultCategories> response) {
+                mLisCat.add(response.body().getData());
+                mCatAdapter = new CategoryAdapter(getActivity(), mLisCat);
+                mHomeBinding.recyclerCat.setAdapter(mCatAdapter);
+                Log.e("getCat", String.valueOf(response.body()));
+            }
+
+            @Override
+            public void onFailure(Call<ResultCategories> call, Throwable t) {
+                Log.e("errorgetCat", t.getMessage());
+
+            }
+        });
+
+        mLisCat = new ArrayList<>();
+        mCatAdapter = new CategoryAdapter(getActivity(), mLisCat);
+
+        mHomeBinding.recyclerCat.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        mHomeBinding.recyclerCat.setAdapter(mCatAdapter);
+        mCatAdapter.notifyDataSetChanged();
+
     }
 
     public void showSlider() {
@@ -102,6 +149,7 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         showSlider();
+        showCategories();
     }
 }
 

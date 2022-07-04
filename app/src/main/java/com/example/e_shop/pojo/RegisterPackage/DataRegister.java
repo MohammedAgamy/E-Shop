@@ -1,5 +1,5 @@
 
-package com.example.e_shop.pojo;
+package com.example.e_shop.pojo.RegisterPackage;
 
 
 public class DataRegister {

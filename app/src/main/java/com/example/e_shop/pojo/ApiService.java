@@ -1,9 +1,10 @@
 package com.example.e_shop.pojo;
 
 
-import com.example.e_shop.pojo.HomePackage.ResultBannersHome;
-
-import java.util.List;
+import com.example.e_shop.pojo.HomePackage.Categories.ResultCategories;
+import com.example.e_shop.pojo.HomePackage.Banners.ResultBannersHome;
+import com.example.e_shop.pojo.RegisterPackage.LogInModel;
+import com.example.e_shop.pojo.RegisterPackage.RegisterModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -29,6 +30,9 @@ public interface ApiService {
 
     @GET("banners")
     Call<ResultBannersHome>getBanners();
+
+    @GET("categories")
+    Call<ResultCategories> getCategory();
 
 
 }

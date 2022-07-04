@@ -1,4 +1,4 @@
-package com.example.e_shop.pojo;
+package com.example.e_shop.pojo.RegisterPackage;
 
 import android.content.Context;
 import android.content.Intent;

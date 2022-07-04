@@ -1,14 +1,16 @@
-package com.example.e_shop.pojo;
+package com.example.e_shop.pojo.RegisterPackage;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.e_shop.pojo.ApiService;
+import com.example.e_shop.pojo.Client;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.GET;
 
 public class UserSignInLiveData extends ViewModel {
     public MutableLiveData<LogInModel> mutableLiveDataSignIn = new MutableLiveData<>();

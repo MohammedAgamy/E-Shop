@@ -1,5 +1,5 @@
 
-package com.example.e_shop.pojo.HomePackage;
+package com.example.e_shop.pojo.HomePackage.Banners;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

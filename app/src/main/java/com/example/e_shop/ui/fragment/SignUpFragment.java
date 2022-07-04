@@ -14,23 +14,13 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 
 import com.example.e_shop.R;
 import com.example.e_shop.databinding.FragmentSignUpBinding;
-import com.example.e_shop.pojo.ApiService;
-import com.example.e_shop.pojo.Client;
-import com.example.e_shop.pojo.RegisterModel;
-import com.example.e_shop.pojo.SharedModel;
-import com.example.e_shop.pojo.UserSignUpLiveData;
+import com.example.e_shop.pojo.RegisterPackage.RegisterModel;
+import com.example.e_shop.pojo.RegisterPackage.SharedModel;
+import com.example.e_shop.pojo.RegisterPackage.UserSignUpLiveData;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class SignUpFragment extends Fragment implements View.OnClickListener {

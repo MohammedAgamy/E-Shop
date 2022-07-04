@@ -18,11 +18,9 @@ import android.view.ViewGroup;
 
 import com.example.e_shop.R;
 import com.example.e_shop.databinding.FragmentSignInBinding;
-import com.example.e_shop.databinding.FragmentSignInBindingImpl;
-import com.example.e_shop.pojo.LogInModel;
-import com.example.e_shop.pojo.RegisterModel;
-import com.example.e_shop.pojo.SharedModel;
-import com.example.e_shop.pojo.UserSignInLiveData;
+import com.example.e_shop.pojo.RegisterPackage.LogInModel;
+import com.example.e_shop.pojo.RegisterPackage.SharedModel;
+import com.example.e_shop.pojo.RegisterPackage.UserSignInLiveData;
 import com.example.e_shop.ui.HomeActivity;
 import com.google.android.material.snackbar.Snackbar;
 
