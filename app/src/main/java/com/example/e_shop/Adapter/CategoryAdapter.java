@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.e_shop.R;
-import com.example.e_shop.pojo.HomePackage.Categories.Data;
 import com.example.e_shop.pojo.HomePackage.Categories.DatumCategory;
+import com.example.e_shop.pojo.HomePackage.CatogeryHome.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryItem> {
     Context mContext;
-    List<Data> mList;
+    List<com.example.e_shop.pojo.HomePackage.CatogeryHome.Data> mList;
 
     public CategoryAdapter(Context mContext, List<Data> mList) {
         this.mContext = mContext;
@@ -37,8 +37,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryItem holder, int position) {
-        Glide.with(mContext).load(mList.get(position).getData().get(position).getImage()).into(holder.mImageCat);
-        holder.mName_Cat.setText(mList.get(position).getData().get(position).getName());
+        Glide.with(mContext).load(mList.get(position).getProducts().get(position).getImage()).into(holder.mImageCat);
+        //holder.mName_Cat.setText(mList.get(position).getData().get(position).getName());
 
     }
 

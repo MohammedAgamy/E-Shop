@@ -3,6 +3,7 @@ package com.example.e_shop.pojo;
 
 import com.example.e_shop.pojo.HomePackage.Categories.ResultCategories;
 import com.example.e_shop.pojo.HomePackage.Banners.ResultBannersHome;
+import com.example.e_shop.pojo.HomePackage.CatogeryHome.HomeCatogray;
 import com.example.e_shop.pojo.RegisterPackage.LogInModel;
 import com.example.e_shop.pojo.RegisterPackage.RegisterModel;
 
@@ -34,5 +35,7 @@ public interface ApiService {
     @GET("categories")
     Call<ResultCategories> getCategory();
 
+    @GET("home")
+    Call<HomeCatogray> getHomeCat();
 
 }

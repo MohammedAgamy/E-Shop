@@ -27,9 +27,10 @@ import com.example.e_shop.pojo.Client;
 import com.example.e_shop.pojo.HomePackage.Banners.Datum;
 import com.example.e_shop.pojo.HomePackage.Banners.ResultBannersHome;
 import com.example.e_shop.pojo.HomePackage.Categories.CategoryViewModel;
-import com.example.e_shop.pojo.HomePackage.Categories.Data;
 import com.example.e_shop.pojo.HomePackage.Categories.DatumCategory;
 import com.example.e_shop.pojo.HomePackage.Categories.ResultCategories;
+import com.example.e_shop.pojo.HomePackage.CatogeryHome.Data;
+import com.example.e_shop.pojo.HomePackage.CatogeryHome.HomeCatogray;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 
@@ -88,7 +89,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void showCategories() {
-        ApiService apiService = Client.getRetrofit().create(ApiService.class);
+       /* ApiService apiService = Client.getRetrofit().create(ApiService.class);
         Call<ResultCategories> call = apiService.getCategory();
 
         call.enqueue(new Callback<ResultCategories>() {
@@ -103,6 +104,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<ResultCategories> call, Throwable t) {
                 Log.e("errorgetCat", t.getMessage());
+
+            }
+        });*/
+
+        ApiService apiService=Client.getRetrofit().create(ApiService.class);
+        Call<HomeCatogray> call=apiService.getHomeCat();
+
+        call.enqueue(new Callback<HomeCatogray>() {
+            @Override
+            public void onResponse(Call<HomeCatogray> call, Response<HomeCatogray> response) {
+                mLisCat.add(response.body().getData());
+                mCatAdapter = new CategoryAdapter(getActivity(), mLisCat);
+                mHomeBinding.recyclerCat.setAdapter(mCatAdapter);
+                Log.e("getCat", String.valueOf(response.body()));
+            }
+
+            @Override
+            public void onFailure(Call<HomeCatogray> call, Throwable t) {
+                Log.e("getCat", t.getMessage());
 
             }
         });
